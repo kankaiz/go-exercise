@@ -30,5 +30,5 @@ func Sqrt(x float64) (float64, error) {
 
 func main() {
 	fmt.Println(Sqrt(2))
-	fmt.Println(Sqrt(-2))
+	fmt.Println(Sqrt(-2)) //print error object will try to find obj.Error()
 }
