@@ -1,3 +1,4 @@
+// https://www.hackerrank.com/challenges/arrays-ds
 package main
 
 import "fmt"
@@ -8,10 +9,10 @@ func main() {
 	fmt.Scanln(&n)
 	array := make([]int, n)
 	for i := range array {
-		fmt.Scanf("%d", &array[i])
+		fmt.Scanf("%v", &array[i]) // or use %d
 	}
 	for ; n > 0; n-- {
-		fmt.Printf("%v", array[n-1])
+		fmt.Printf("%d", array[n-1])
 		fmt.Print(" ")
 	}
 	fmt.Printf("\n")
