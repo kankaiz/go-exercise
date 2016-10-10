@@ -6,8 +6,10 @@ import (
 	"math"
 )
 
+// Context ...
 type Context [6][6]int
 
+// CalHourGlass ...
 func CalHourGlass(array Context, x int, y int) int {
 	if (x+3) <= 6 && (y+3) <= 6 {
 		sum := 0
