@@ -45,13 +45,19 @@ func main() {
 	date2 := MyDate{d2, time.Month(m2), y2}
 
 	if !validDate(date1) || !validDate(date2) {
+		// invalid date format is
 		fmt.Println("Please input a valid date")
 	} else {
+		// valid date format
 		// business logic here
 		fmt.Println(date1.day, date1.month, date2.year)
 		time1 := time.Date(date1.year, date1.month, date1.day, 0, 0, 0, 0, time.UTC)
 		time2 := time.Date(date2.year, date2.month, date2.day, 0, 0, 0, 0, time.UTC)
 
-		fmt.Println((int(time1.Sub(time2) / (24 * time.Hour))))
+		if date1.year >= date2.year {
+			fmt.Println((int(time1.Sub(time2) / (24 * time.Hour))))
+		} else {
+			fmt.Println((int(time2.Sub(time1) / (24 * time.Hour))))
+		}
 	}
 }
