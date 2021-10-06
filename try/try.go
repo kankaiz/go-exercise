@@ -4,7 +4,8 @@ import "fmt"
 
 func main() {
 	var a int = 5
-	var b float32 = 23
+	var b float32
+	b = 32
 	const pi float64 = 3.14159265354
 	fmt.Println(a, b, pi)
 
