@@ -22,4 +22,11 @@ func main() {
 	fmt.Printf("%b \n", 25)
 	// chr
 	fmt.Printf("%c \n", 34)
+	fmt.Printf("%c%c%c \n", rune('C'), rune('H'), rune('R'))
+	// hex
+	fmt.Printf("%x \n", 15)
+	// scientific notation
+	fmt.Printf("%e \n", pi)
+	// chars
+	fmt.Println(int('A'), byte('B'), string('A'+1), string('A'+byte(2)))
 }
