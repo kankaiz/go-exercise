@@ -10,8 +10,7 @@ func main() {
 	fmt.Println(old)
 
 	slice[3] = 9
-	fmt.Println(slice)
-	fmt.Println(old)
+	fmt.Println(slice, old)
 
 	fmt.Println("try copy")
 	// var cp []int  this will make copy result to empty list
@@ -19,17 +18,31 @@ func main() {
 	// copy() will match the dst slice length
 	copy(cp, slice[:])
 	slice[0] = 8
-	fmt.Println(slice)
-	fmt.Println(cp)
+	fmt.Println(slice, cp)
 
-	fmt.Println("try append copy")
+	fmt.Println("*try first append copy")
 	var appd []int
 	appd = append(appd, slice[:]...)
-	fmt.Println(slice)
-	fmt.Println(appd)
+	fmt.Println(slice, appd)
 	slice[4] = 7
-	fmt.Println(slice)
-	fmt.Println(appd)
+	fmt.Println(slice, appd)
+	fmt.Println("try second append copy")
+	appd2 := append(slice)
+	fmt.Println(slice, appd2)
+	slice[1] = 2
+	fmt.Println(slice, appd2)
+	fmt.Println("try third append copy")
+	var appd3 []int
+	appd3 = append(slice[:0], slice...)
+	// appd3 := append(slice[:0], slice...)
+	fmt.Println(slice, appd3)
+	slice[2] = 5
+	fmt.Println(slice, appd3)
+	fmt.Println("*try forth append copy")
+	appd4 := append([]int(nil), slice...)
+	fmt.Println(slice, appd4)
+	slice[0] = 6
+	fmt.Println(slice, appd4)
 
 	// insert ele
 	fmt.Println("try insertion")
