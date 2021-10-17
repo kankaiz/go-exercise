@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode/utf8"
+)
 
 func main() {
 	defer firstRun()
@@ -11,6 +14,8 @@ func main() {
 	for k, v := range s {
 		fmt.Println(k, v, string(v))
 	}
+	// RuneCountInString counts characters
+	fmt.Println(s, len(s), utf8.RuneCountInString(s))
 }
 
 func firstRun()  { fmt.Println("first") }
