@@ -23,4 +23,11 @@ func main() {
 
 	TRUE, FALSE := true, false
 	fmt.Println(TRUE && FALSE, TRUE || FALSE, !TRUE, !FALSE)
+
+	var m2 map[string]int
+	// m2 := map[string]int{}
+
+	for k, v := range m2 {
+		fmt.Println(k, v)
+	}
 }
