@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"math"
 )
@@ -11,10 +12,26 @@ type Foo struct {
 	b string
 }
 
+type Bar struct {
+	C string
+	F Foo
+}
+
+type Baz struct {
+	D string
+	// embedding
+	Foo
+}
+
+type Person struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
+
 func main() {
 	// Strusts are not Objects!
 	f := Foo{
-		A: 20,
+		A: 20, b: "Hello",
 	}
 	//f2 full copy of f
 	var f2 Foo
@@ -27,6 +44,15 @@ func main() {
 	f3.A = 200
 	fmt.Println(f3.A, f.A)
 
+	// try embedding structs
+	fmt.Println("try embedding structs")
+	b1 := Bar{C: "Fred", F: f}
+	b2 := Baz{D: "Nancy", Foo: f}
+	fmt.Println(b1.F.A, b2.A)
+
+	f2 = b2.Foo
+	fmt.Println(f2)
+
 	rec1 := Rectangle{10, 5}
 	cir := Circle{7}
 
@@ -37,6 +63,15 @@ func main() {
 	// missing method area (area has pointer receiver)
 	fmt.Println(getArea(&rec1))
 	fmt.Println(getArea(cir))
+
+	// try json marshal and unmarshal
+	fmt.Println("try json marshal")
+	bob := `{ "name": "Bob", "age": 30}`
+	var b Person
+	json.Unmarshal([]byte(bob), &b)
+	fmt.Println(b)
+	bob2, _ := json.Marshal(b)
+	fmt.Println(string(bob2))
 }
 
 type Shape interface {
