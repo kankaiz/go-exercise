@@ -78,6 +78,10 @@ type Shape interface {
 	area() float64
 }
 
+func getArea(shape Shape) float64 {
+	return shape.area()
+}
+
 type Rectangle struct {
 	height float64
 	width  float64
@@ -97,8 +101,4 @@ type Circle struct {
 
 func (cir Circle) area() float64 {
 	return math.Pi * math.Pow(cir.radius, 2)
-}
-
-func getArea(shape Shape) float64 {
-	return shape.area()
 }
