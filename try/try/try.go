@@ -30,4 +30,9 @@ func main() {
 	for k, v := range m2 {
 		fmt.Println(k, v)
 	}
+
+	var vx int = 65 // ASCII 65 = "A"
+	var vy = string(vx)
+	fmt.Println(vy)
+	fmt.Println(rune('A'))
 }
