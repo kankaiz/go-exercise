@@ -26,6 +26,13 @@ type Baz struct {
 type Person struct {
 	Name string `json:"name"`
 	Age  int    `json:"age"`
+	// not work if do not export fields
+	// struct type 'example.com/go-exercise/try/struct.Person'
+	// doesn't have any exported fields, nor custom marshaling (SA9005)
+	// name string `json:"name"`
+	// age  int    `json:"age"`
+	// The reason behind this is that the json library
+	// does not have the ability to view fields using reflect unless they are exported
 }
 
 func main() {
