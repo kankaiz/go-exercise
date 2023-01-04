@@ -20,8 +20,10 @@ func (it *IntTree) Insert(val int) *IntTree {
 }
 
 func main() {
-	var it IntTree
+	// need to define as pointer as the value will be updated
+	var it *IntTree
 	fmt.Println(it)
-	it.Insert(3)
+	it = it.Insert(3)
+	it = it.Insert(6)
 	fmt.Println(it)
 }
