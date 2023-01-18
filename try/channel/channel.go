@@ -21,12 +21,40 @@ func main() {
 		name := <-in1 // read from in channel
 		out1 <- fmt.Sprintf("Hello, " + name)
 	}()
+	go func() {
+		name := <-in1 // read from in channel
+		out1 <- fmt.Sprintf("Again, " + name)
+	}()
 	in1 <- "Bob"
+	// in1 <- "another"
+	// above will cause fatal error: all goroutines are asleep - deadlock!
+	// as unbuffered channel pause further write
 	close(in1)
 	message := <-out1
 	fmt.Println(message)
 
-	// sometimes don't want to wait for a channel to be read
+	// cf this block
+	// go func() {
+	// 	name := <-in1 // read from in channel
+	// 	out1 <- fmt.Sprintf("Hello, " + name)
+	// }()
+	// go func() {
+	// 	name := <-in1 // read from in channel
+	// 	out1 <- fmt.Sprintf("Again, " + name)
+	// }()
+	// in1 <- "Bob"
+	// in1 <- "another"
+	// // also working if not close an unbuffered channel
+	// // close(in1)
+	// for i := 0; i < 2; i++ {
+	// 	v := <-out1
+	// 	fmt.Println(v)
+	// }
+
+	// By default, channels are unbuffered
+	// every write to an open, unbuffered channel causes the writing goroutine
+	// to PAUSE
+	// if don't want to wait for a channel to be read
 	// after we write to it
 	// use buffer channel
 	out2 := make(chan int, 10)
@@ -67,6 +95,7 @@ func main() {
 		}
 	}()
 
+	// the loop continues until the channel is closed
 	for v := range out3 {
 		fmt.Println(v)
 	}
