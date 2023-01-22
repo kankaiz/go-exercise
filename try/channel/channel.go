@@ -21,10 +21,6 @@ func main() {
 		name := <-in1 // read from in channel
 		out1 <- fmt.Sprintf("Hello, " + name)
 	}()
-	go func() {
-		name := <-in1 // read from in channel
-		out1 <- fmt.Sprintf("Again, " + name)
-	}()
 	in1 <- "Bob"
 	// in1 <- "another"
 	// above will cause fatal error: all goroutines are asleep - deadlock!
@@ -59,6 +55,8 @@ func main() {
 	// use buffer channel
 	out2 := make(chan int, 10)
 	for i := 0; i < 10; i++ {
+		// make sure to pass i as localI
+		// at anytime the goroutine uses a var whose value might change
 		go func(localI int) {
 			out2 <- localI * 2
 		}(i)
