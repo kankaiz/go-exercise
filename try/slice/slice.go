@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	slice := []int{5, 4, 3, 2, 1}
@@ -57,4 +59,5 @@ func main() {
 	// here slice hasn't changed
 	fmt.Println(slice)
 	fmt.Println(slice2)
+
 }
